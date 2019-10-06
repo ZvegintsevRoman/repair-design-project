@@ -1,0 +1,10 @@
+$color-beige: #E3B873;
+
+.outer-wrapper {
+    @media (max-width: 1440px) {
+        width: 1440px;
+    }
+    @media (max-width: 375px) {
+        width: 375px;
+    }
+}

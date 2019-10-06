@@ -1,0 +1,12 @@
+@media (max-width: 1440px) {
+  .outer-wrapper {
+    width: 1440px;
+  }
+}
+
+@media (max-width: 375px) {
+  .outer-wrapper {
+    width: 375px;
+  }
+}
+/*# sourceMappingURL=style.css.map */
