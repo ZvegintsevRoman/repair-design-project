@@ -1,10 +1,1906 @@
-$color-beige: #E3B873;
+// Fonts import and variables
+@font-face {
+    font-family: "FuturaBookC";
+    src: url("./assets/fonts/futurabookc.otf");
+    font-weight: normal;
+}
+@font-face {
+    font-family: "FuturaDemic";
+    src: url("./assets/fonts/futurademic.otf");
+    font-weight: normal;
+}
+@font-face {
+    font-family: "YesevaOne";
+    src: url("./assets/fonts/YesevaOne-Regular.ttf");
+    font-weight: normal;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url("./assets/fonts/Roboto-Regular.ttf");
+    font-weight: normal;
+}
+@font-face {
+    font-family: "ProximaNova";
+    src: url("./assets/fonts/ProximaNova-Regular.ttf");
+    font-weight: normal;
+}
 
-.outer-wrapper {
-    @media (max-width: 1440px) {
-        width: 1440px;
+
+// Disable default for buttons and inputs
+button, input[type="submit"], input[type="text"], input[type="phone"], input[type="email"] {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+// Font variables
+$futuraBook: "FuturaBookC", sans-serif;
+$futuraDemic: "FuturaDemic", sans-serif;
+$yesevaOne: "YesevaOne", sans-serif;
+$roboto: "Roboto", sans-serif;
+$proximaNova: "ProximaNova", sans-serif;
+$heading-text: uppercase;
+$navigation-text-size: 14px;
+$article-text-size: 20px;
+$desctiprion-text-size: 18px;
+$big-heading: 40px;
+
+
+
+// Color variables
+$color-beige: #E3B873;
+$color-dark: #131313;
+$color-white: #ffffff;
+$color-grey: #595959;
+
+// Sizing variables
+$display-monitor: 1440px;
+$display-mobile: 375px;
+$display-tablet: 1024px;
+$content-container: 94%;
+
+// Positioning variables
+$link-padding: 0 5px 5px;
+$button-padding: 0 20px;
+$side-indent: 0 5% 0;
+$left-indent: 0 0 0 5%;
+$right-indent: 0 5% 0 0;
+$center-block: 0 auto;
+$center-text: center;
+
+// Text variables
+$article-text: justify;
+
+// Parent's variables
+$allow-overflow: visible;
+$parent-position: relative;
+
+
+// Style templates
+@mixin flex-container($dicretion: row, $horizontal: center, $vertical: center) {
+    position: relative;
+    display: flex;
+    flex-direction: $dicretion;
+    justify-content: $horizontal;
+    align-items: $vertical;
+}
+
+@mixin link-styling() {
+    padding: $link-padding;
+    text-decoration: none;
+    text-transform: $heading-text;
+    font-size: $navigation-text-size;
+    font-family: $futuraBook;
+    color: $color-white;
+    cursor: pointer;
+    &:hover {
+        color: $color-beige;
+        border-bottom: 3px solid $color-beige;
+        margin-bottom: -3px;
     }
-    @media (max-width: 375px) {
-        width: 375px;
+    &:active {
+        color: $color-beige;
+        border-bottom: 3px solid $color-beige;
+        margin-bottom: -3px;
+    }
+}
+
+@mixin button-styling() {
+    @include flex-container(center, center);
+    height: 40px;
+    max-width: 250px;
+    
+    background-color: $color-beige;
+    color: $color-white;
+    padding: $button-padding;
+    font-family: $futuraDemic;
+    font-size: 13px;
+    text-transform: $heading-text;
+    cursor: pointer;
+    &:hover {
+        border: 1px solid $color-dark;
+        background-color: $color-white;
+        color: $color-dark;
+    }
+}
+
+@mixin pseudo-inst($element: after, $out: 0px) {
+    margin-top: -$out;
+    &::#{$element} {
+        position: absolute;
+        content: "";
+        width: 80px;
+        top: 7px;
+        left: $out;
+        border: 2px solid $color-beige;
+    }
+}
+
+@mixin heading-icon() {
+    position: relative;
+    &::before {
+        position: absolute;
+        content: "";
+        top: 50%;
+        right: 40px;
+        width: 30px;
+        border-bottom: 2px solid $color-beige;
+    }
+    &::after {
+        position: absolute;
+        content: "";
+        top: 50%;
+        left: 40px;
+        width: 30px;
+        border-bottom: 2px solid $color-beige;
+    }
+}
+
+@mixin info-block($rows: 40px, $columns: 40px, $rowNum: 14) {
+    display: grid;
+    grid-template-columns: repeat(10, $columns);
+    grid-template-rows: repeat($rowNum, $rows);
+}
+
+@mixin info-block-text($padding: 20px) {
+    grid-area: 8 / 2 / span 6 / span 8;
+    z-index: 2;
+    padding: $padding 0 0 $padding;
+    font-family: $roboto;
+    background-color: $color-white;
+    color: $color-grey;
+    box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.25);
+}
+
+@mixin info-block-additional() {
+    grid-area: 13 / 2 / span 2 / span 6;
+    z-index: 3;
+    text-align: center;
+    padding: 15px;
+    background-color: $color-beige;
+    color: $color-white;
+    font-family: $yesevaOne;
+    font-size: 18px;
+}
+
+@mixin transition() {
+    @include flex-container(row, space-between, center);
+    width: 40%;
+    .arrow-next,
+    .arrow-prev {
+        font-size: 35px;
+        color: $color-white;
+        text-decoration: none;
+    }
+    .current {
+        font-size: 15px;
+        color: $color-grey;
+        text-decoration: none;
+        &:hover {
+            font-size: 18px;
+            color: $color-white;
+        }
+    }
+}
+
+@mixin fancy-heading($top: 40px, $left: 180px, $width: 50px, $height: 3px) {
+    position: relative;
+    text-transform: $heading-text;
+    font-family: $yesevaOne;
+    font-size: 27px;
+    color: $color-beige;
+    &::after {
+        position: absolute;
+        content: "";
+        top: $top;
+        left: $left;
+        width: $width;
+        border-bottom: $height solid $color-beige;
+        @media (max-width: $display-tablet) {
+            display: none;
+        }
+    }
+}
+
+@mixin fancy-article($text-width: 50%) {
+    @include flex-container(row, space-between, center);
+    flex-wrap: wrap;
+    width: 100%;
+    font-family: $futuraBook;
+    font-size: 15px;
+    color: $color-white;
+
+    &-text {
+        width: $text-width;
+        line-height: 25px;
+    }
+
+    &-head {
+        display: block;
+        font-family: $yesevaOne;
+        font-size: $desctiprion-text-size;
+        text-transform: $heading-text;
+        color: $color-beige;
+    }
+}
+
+
+@mixin note-item($top: 0px, $left: 0px) {
+    position: absolute;
+    top: $top;
+    left: $left;
+    @include flex-container(row, flex-start, center);
+    .note-order {
+        padding: 10px;
+        font-family: $yesevaOne;
+        font-size: 18px;
+        border-radius: 50%;
+        background-color: $color-beige;
+        color: $color-white;
+    }
+    & > p {
+        padding-left: 25px;
+        color: $color-dark;
+        font-family: $futuraDemic;
+        font-size: 15px;
+        max-width: 200px;
+    }
+}
+
+// Content container templates
+
+%form {
+    @media (min-width: $display-tablet) {
+        padding: 0 5% 0;
+    }
+    @media (max-width: $display-tablet) {
+        width: 100%;
+        padding: 0;           
+    }
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    justify-items: center;
+    min-width: 30%;
+    padding: 0 5% 0;
+    background-color: $color-dark;
+
+    &-heading {
+        grid-area: 1 / 1 / 2 / 3;
+        font-family: $yesevaOne;
+        font-size: 20px;
+        text-transform: $heading-text;
+        color: $color-white;
+        text-align: center;
+    }
+
+    &-name {
+        grid-area: 2 / 1 / 3 / 2;
+        label[for=name] {
+            font-family: $futuraBook;
+            @media (min-width: $display-tablet) {
+                font-size: 15px;
+            }
+            @media (max-width: $display-tablet) {
+                font-size: 12px;
+            }
+            color: $color-grey;
+        }
+        input[type=text] {
+            font-family: $futuraBook;
+            @media (min-width: $display-tablet) {
+                font-size: 18px;
+            }
+            @media (max-width: $display-tablet) {
+                font-size: 14px;
+            }
+            color: $color-white;
+            border-bottom: 1px solid $color-grey;
+            cursor: default;
+        }
+    }
+
+    &-phone {
+        grid-area: 2 / 2 / 3 / 3;
+        label[for=phone] {
+            font-family: $futuraBook;
+            @media (min-width: $display-tablet) {
+                font-size: 15px;
+            }
+            @media (max-width: $display-tablet) {
+                font-size: 12px;
+            }
+            color: $color-grey;
+        }
+        input[type=phone] {
+            font-family: $futuraBook;
+            @media (min-width: $display-tablet) {
+                font-size: 18px;
+            }
+            @media (max-width: $display-tablet) {
+                font-size: 14px;
+            }
+            color: $color-white;
+            border-bottom: 1px solid $color-grey;
+            cursor: default;
+        }
+    }
+
+    &-additional {
+        grid-area: 3 / 1 / 5 / 2;
+        label[for=additional] {
+            font-family: $futuraBook;
+            @media (min-width: $display-tablet) {
+                font-size: 15px;
+            }
+            @media (max-width: $display-tablet) {
+                font-size: 12px;
+            }
+            color: $color-grey;
+        }
+        input[name=additional] {
+            font-family: $futuraBook;
+            @media (min-width: $display-tablet) {
+                font-size: 18px;
+            }
+            @media (max-width: $display-tablet) {
+                font-size: 14px;
+            }
+            color: $color-white;
+            border-bottom: 1px solid $color-grey;
+            cursor: default;
+        }
+    }
+
+    &-checkbox {
+        justify-self: center;
+        grid-area: 4 / 1 / 5 / 3;
+        & > input[type=checkbox] {
+            vertical-align: bottom;
+            height: 18px;
+            width: 18px;
+            &:checked {
+                background-color: $color-beige;
+                color: $color-white;
+            }
+        }
+        & > label {
+            font-family: $futuraBook;
+            font-size: 16px;
+            color: $color-white;
+        }
+    }
+
+    &-button {
+        @include button-styling();
+        @media (min-width: $display-tablet) {
+            grid-area: 5 / 1 / 6 / 3;
+        }
+        @media (max-width: $display-tablet) {
+            grid-area: 5 / 1 / 6 / 3;
+            width: 90%;
+        }
+        justify-self: center;
+    }
+}
+
+// Main css. Applying styles to document
+.outer-wrapper {
+    z-index: -2;
+    display: flex;
+    flex-direction: column;
+    background-color: $color-dark;
+    @media (min-width: $display-monitor) {
+        width: 100%;                
+    }
+    @media (min-width: $display-tablet) and (max-width: $display-monitor) {
+        width: 100%;            
+    }
+    @media (max-width: $display-tablet) and (min-width: $display-mobile) {
+        width: 100%;
+    }
+    @media (max-width: $display-mobile) {
+        max-width: $display-mobile;            
+    }
+}
+
+.header,
+.footer {
+    @include flex-container(row, space-between, center);
+    margin: $side-indent;
+    width: 94%;
+    min-height: 83px;
+    background-color: $color-dark;    
+
+    &--logo {
+        @media (min-width: $display-tablet) {
+            font-size: $navigation-text-size;
+        }
+        @media (max-width: $display-tablet) {
+            font-size: 12px;         
+        }
+        text-transform: $heading-text;
+        font-family: $futuraBook;
+        letter-spacing: 1px;
+        color: $color-beige;
+    }
+
+    &--navbar {
+        width: 50%;
+        @include flex-container(row, space-between, center);
+        @media (max-width: $display-tablet) {
+            display: none;
+        }
+    }
+
+    &--navbar_menu {
+        @include flex-container(row, space-between, center);
+        flex-wrap: wrap;
+        width: 100%;
+        list-style: none;
+        &-link {
+            min-width: 100px;
+            @include link-styling();
+        }
+    }
+
+    &--phone_number {
+        font-family: $futuraBook;
+        font-size: $navigation-text-size;
+        color: $color-beige;
+    }
+
+    &--button {
+        @media (min-width: $display-tablet) {
+            @include button-styling();
+            height: 37px;
+        }
+        @media (max-width: $display-tablet) {
+            display: none;           
+        } 
+    }   
+}
+
+.about {
+    @include flex-container();
+    width: 100%;
+
+    &--instagram {
+        @media (max-width: $display-tablet) and (min-width: $display-mobile) {
+            display: none;
+        }
+        @media (max-width: $display-mobile) {
+            display: none;            
+        }
+        max-width: 5%;
+        min-width: 50px;
+        &--link {
+            @include pseudo-inst(after, 140px);
+            @include link-styling();
+            position: relative;
+            transform: rotate(90deg);
+            display: block;
+            font-family: $yesevaOne;
+            font-size: $article-text-size;
+            color: $color-beige;
+            &:hover {
+                color: $color-white;
+                border-bottom: none;
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    &--container {
+        @include flex-container(row, flex-start, center);
+        min-width: 95%;
+        height: 700px;
+
+        &::after {
+            content: "";
+            position: absolute;
+            background-image: url("./assets/images/about-image.png");
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            opacity: 0.3;
+            background-size: cover;
+        }  
+    }
+
+    &--info {
+        @media (min-width: $display-tablet) {
+            @include flex-container(column, space-between, flex-start);
+        }
+        @media (max-width: $display-tablet) {
+            @include flex-container(column, space-between, center);
+        }
+        z-index: 1;
+        width: 100%;
+        height: 60%;
+        margin-left: 5%;
+    }
+
+    &--heading {
+        @media (min-width: $display-tablet) {
+            font-size: $big-heading;
+        }
+        @media (max-width: $display-tablet) {
+            font-size: 25px;
+        }
+        margin-bottom: 0;
+        font-family: $yesevaOne;
+        text-transform: $heading-text;
+        color: $color-white;
+
+            &--beige {
+                color: $color-beige;
+            }
+        }
+
+    &--text {
+        width: 50%;
+        text-align: $article-text;
+        font-style: $futuraBook;
+        
+        color: $color-white;
+        @media (min-width: $display-tablet) {
+            width: 35%;
+            font-size: 22px;
+        }
+        @media (max-width: $display-tablet) {
+            width: 80%;
+            font-size: 20px;
+        }
+        
+    }
+
+    &--options {
+        @media (min-width: $display-tablet) {
+            @include flex-container(row, space-between, flex-start);
+            width: 40%;
+        }
+        @media (max-width: $display-tablet) {
+            @include flex-container(column, space-between, center);
+            width: 90%;
+            height: 120px;
+        }
+
+        &-button {
+            @include button-styling();
+            @media (min-width: $display-tablet) {
+                width: 30%;
+            }
+            @media (max-width: $display-tablet) {
+                width: 80%;
+            }
+            
+        }
+
+        &-button:last-child {
+            margin: -2px;
+            border: 2px solid $color-white;
+            background-color: transparent;
+            &:hover {
+                margin: 0;
+                border: none;
+                background-color: $color-white;
+                a {
+                    color: $color-dark;
+                }
+            }
+        }
+    }
+
+    &--scroll {
+        @media (min-width: $display-tablet) {
+            position: absolute;
+            display: block;
+            top: 100%;
+            left: -3%;
+            width: 200px;
+            background-color: $color-dark;
+        }
+        @media (max-width: $display-tablet) {
+            display: none;
+        }
+
+        &-button {
+            font-family: $futuraBook;
+            font-size: 20px;
+            text-decoration: none;
+            text-transform: $heading-text;
+            color: $color-white;
+        }
+
+        &-pointer {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin-left: 10px;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            border: 2px solid $color-beige;
+            background-color: $color-dark;
+        }
+
+        &:hover {
+            background-color: $color-white;
+        }
+    }
+}
+
+
+.projects {
+    @include flex-container(row, space-evenly, flex-end);
+    padding: 60px 0 0 0;
+
+        &--info {
+            @include flex-container(column, space-around, flex-start);
+            width: 30%;
+            padding: 0 5% 0;
+            @media (max-width: $display-tablet) {
+                align-items: center;
+                width: 90%;
+            }
+        }
+
+        &--side_heading {
+            @include fancy-heading();
+        }
+
+        &--description_text {
+            font-size: $desctiprion-text-size;
+            font-family: $futuraBook;
+            color: $color-white;
+            @media (max-width: $display-tablet) {
+                padding: 0 3% 0;
+                text-align: center;
+            }
+            
+        }
+
+        &--info_block {
+            @include fancy-article(45%);
+            @media (max-width: $display-tablet) {
+                .info-text {
+                    text-align: center;
+                }
+            }
+            @media (max-width: $display-mobile) {
+                .info-text {
+                    text-align: left;
+                }
+            }
+        }
+        &--transition {
+            @include transition();
+            @media (max-width: $display-tablet) {
+                display: none;
+            }
+        }
+        &--slider {
+            @media (min-width: $display-tablet) {
+                display: none;
+            }
+            @media (max-width: $display-tablet) and (min-width: $display-mobile) {
+                min-height: 400px;
+            }
+            @media (max-width: $display-mobile) {
+                min-height: 200px;            
+            }
+            @include flex-container(row, space-between, center);
+            width: 90%;
+            background-image: url("./assets/images/projects-image.png");
+            background-size: cover;
+            
+            &-button_prev {
+                @include button-styling();
+                border-radius: 50%;
+                margin-left: 10%;
+            }
+            
+            &-button_next {
+                @include button-styling();
+                border-radius: 50%;
+                margin-right: 10%;
+            }
+        }
+
+        &--examples {
+            @include flex-container(column, flex-start, space-between);
+            min-width: 65%;
+            @media (max-width: $display-tablet) {
+                display: none;
+            }
+        }
+
+        &--nav_menu {
+            width: 100%;
+            @media (max-width: $display-tablet) {
+                display: none;
+            }
+
+            &-list {
+                @include flex-container(row, flex-start, flex-start);
+                padding: 0;
+                list-style: none;
+            }
+
+            &-item {
+                margin-right: 5%;
+            }
+
+            &-option {
+                @include link-styling();
+                color: $color-grey;
+            } 
+        }
+
+        &--images_block {
+            @media (min-width: $display-tablet) {
+                @include flex-container(row, flex-start, flex-end);
+                flex-wrap: nowrap;
+                height: 480px;
+                overflow: hidden;
+            }
+        }
+
+        &--item_1 {
+            @media (min-width: $display-tablet) {
+                @include flex-container(row, space-between, center);
+                padding: 0 30px 0;
+                min-width: 640px;
+                margin-right: 40px;
+                height: 100%;
+                background-image: url("./assets/images/projects-image.png");
+                background-size: cover;
+            } 
+            @media (max-width: $display-mobile) {
+                @include flex-container(row, space-between, center);
+            }
+        }
+
+        &--item_2 {
+            @media (min-width: $display-mobile) {
+                @include flex-container(row, space-between, center);
+                padding: 0 30px 0;
+                min-width: 640px;
+                margin-right: 40px;
+                height: 100%;
+                background-image: url("./assets/images/projects-image.png");
+                background-size: cover;
+            } 
+            @media (max-width: $display-tablet) {
+                display: none;
+            }
+
+            &-button_next {
+                @include button-styling();
+                text-decoration: none;
+                width: 0;
+                border-radius: 50%;
+                @media (min-width: $display-tablet) {
+                    justify-self: flex-start;
+                }
+            }
+        }
+}
+
+.online {
+    @include flex-container(column, center, center);
+    @media (min-width: $display-tablet) {
+        background: linear-gradient($color-dark 50%, $color-white 50%);
+    }
+    @media (max-width: $display-tablet) {
+        background: $color-dark;
+    }
+    margin-top: 30px;
+    text-align: center;
+
+    &--heading {
+        font-family: $yesevaOne;
+        font-size: 16px;
+        text-transform: $heading-text;
+        color: $color-white;
+    }
+
+    &--heading-icon {
+        @include heading-icon();
+        max-width: 200px;
+        margin: 0 auto 20px;
+    }
+
+    &--video {
+        width: 100%;
+        max-width: 600px;
+        object-fit: cover;
+    }
+
+    &--description {
+        @media (min-width: $display-tablet) {
+            color: $color-dark;
+        }
+        @media (max-width: $display-tablet) {
+            color: $color-white;
+        } 
+        position: relative;
+        max-width: 600px;
+        padding: 60px 0 40px 0;
+        margin: 0 auto;
+        font-family: $futuraBook;
+        font-size: 20px;
+        color: $color-dark;
+        line-height: 30px;
+        text-align: center;
+        &::before {
+            position: absolute;
+            content: "";
+            top: 25px;
+            left: 45%;
+            width: 50px;
+            border: 2px solid $color-beige;
+        }
+    }
+
+    &--form {
+        @include flex-container(column, space-between, center);        
+    }   
+
+    &--send {
+        @media (min-width: $display-tablet) {
+            @include flex-container(row, space-around, flex-start);
+        }
+        @media (max-width: $display-tablet) {
+            @include flex-container(column, space-around, center);
+        }
+        max-width: 600px;
+        width: 100%;
+    }
+
+    &--send_name {
+        height: 80px;
+        text-align: left;
+        font-family: $yesevaOne;
+        font-size: 15px;
+        color: $color-grey;
+        & > input[type=text] {
+            font-family: $futuraBook;
+            font-size: 18px;
+            cursor: default;
+            @media (min-width: $display-tablet) {
+                color: $color-dark;
+            }
+            @media (max-width: $display-tablet) {
+                color: $color-white;
+            } 
+            border-bottom: 1px solid $color-grey;
+        }
+    }
+
+    &--send_phone {
+        height: 80px;
+        text-align: left;
+        font-family: $yesevaOne;
+        font-size: 15px;
+        color: $color-grey;
+        & > input[type=phone] {
+            @media (min-width: $display-tablet) {
+                color: $color-dark;
+            }
+            @media (max-width: $display-tablet) {
+                color: $color-white;
+            } 
+            font-family: $futuraBook;
+            font-size: 18px;
+            cursor: default;
+            border-bottom: 1px solid $color-grey;
+        }
+    }
+
+    &--send-button {
+        @include button-styling();
+        @media (min-width: $display-tablet) {
+            color: $color-dark;
+        }
+        @media (max-width: $display-tablet) {
+            color: $color-white;
+        } 
+    }
+        
+    &--agreement {
+        margin: 25px 0 25px;
+        & > input[type=checkbox] {
+            vertical-align: bottom;
+            height: 18px;
+            width: 18px;
+            &:checked {
+                background-color: $color-beige;
+                color: $color-white;
+            }
+        }
+        & > label {
+            font-family: $futuraBook;
+            font-size: 16px;
+            @media (min-width: $display-tablet) {
+                color: $color-dark;
+            } 
+            @media (max-width: $display-tablet) {
+                color: $color-white;
+            } 
+        }
+    }
+}
+
+.types {
+    padding-top: 50px;
+    @include flex-container(column, flex-start, center);
+    background-color: $color-white;
+
+    &--heading {
+        margin: 0;
+        font-family: $yesevaOne;
+        font-size: 16px;
+        text-transform: $heading-text;
+        color: $color-dark;
+    }
+
+    &--heading_icon {
+        @include heading-icon();
+        max-width: 200px;
+    }
+
+    &--blocks_container {
+        @include flex-container(row, space-around, flex-end);
+        flex-wrap: wrap;
+        width: 90%;
+    }
+
+    &--block {
+        @media (min-width: $display-tablet) {
+            @include info-block();
+        }
+        @media (max-width: $display-tablet) {
+            @include info-block(40px, 34px);            
+        }
+    }
+
+    &--image_item {
+        width: 100%;
+        grid-area: 1 / 1 / span 10 / span 10;
+    
+            &-text {
+                @media (min-width: $display-tablet) {
+                    @include info-block-text();
+                }
+                @media (max-width: $display-tablet) {
+                    @include info-block-text();
+                    grid-area: 7 / 1 / span 6 / span 8;           
+                }
+            }
+
+            &-heading {
+                margin: 0;
+            }
+
+            &-list {
+                padding: 0 0 0 15px;
+                & > li {
+                    padding-top: 3px;
+                }
+            }
+
+            &-pricing {
+                @media (min-width: $display-tablet) {
+                    @include info-block-additional();
+                }
+                @media (max-width: $display-tablet) {
+                    @include info-block-additional();
+                    grid-area: 12 / 1 / span 2 / span 7;           
+                }
+                text-transform: uppercase;
+            }
+    }
+}  
+
+
+.contact {
+    @include flex-container(row, flex-start, flex-start);
+    width: 100%;
+    height: 700px;
+    padding: 30px 0 0 0;
+    background-color: $color-white;
+    @media (min-width: $display-tablet) {
+        @include flex-container(row, flex-start, flex-start);
+    }
+    @media (max-width: $display-tablet) {
+        display: none;          
+    }
+
+    &--notes {
+        position: relative;
+        min-width: 60%;
+        height: 100%;
+        background: url("./assets/images/contact-bg.png") no-repeat;
+        @media (max-width: 1024px) {
+            display: none;
+        }
+
+        &-item_1 {
+            @include note-item(13%, 39%);
+        }
+
+        &-item_2 {
+            @include note-item(18%, 47%);
+        }
+
+        &-item_3 {
+            @include note-item(35%, 50%);
+        }
+
+        &-item_4 {
+            @include note-item(50%, 43%);
+        }
+    }
+
+    &--block {
+        @include flex-container(column, flex-start, center);
+        @media (min-width: 1024px) {
+            width: 30%
+        }
+        @media (max-width: 1024px) {
+            width: 100%;
+        }
+    } 
+
+    &--form {
+        @extend %form;
+        grid-template-rows: repeat(6, 1fr);
+
+        &-heading {
+            min-width: 70%;
+            grid-area: 1 / 1 / 2 / 3;
+            justify-self: center; 
+            text-transform: none;
+        }
+
+        &-name {
+            grid-area: 2 / 1 / 3 / 3; 
+            justify-self: left;
+        }
+
+        &-phone { 
+            grid-area: 3 / 1 / 4 / 3;
+            justify-self: left; 
+        }
+
+        &-additional {
+            grid-area: 4 / 1 / 5 / 3;
+            justify-self: left; 
+        }
+
+        &-checkbox {
+            grid-area: 5 / 1 / 6 / 3; 
+            justify-self: left;
+        }
+
+        &-button {
+            grid-area: 6 / 1 / 7 / 3;
+            justify-self: right;
+        }
+    }
+
+    &--note {
+        @media (min-width: $display-tablet) {
+            @include flex-container(row, space-between, center);
+        }
+        @media (max-width: $display-tablet) {
+            display: none;
+        }
+        
+        width: 80%;
+        & > img {
+            border-radius: 50%;
+            padding: 5px;
+            background-color: $color-beige;
+        }
+        & > p {
+            width: 80%;
+            font-family: $yesevaOne;
+            font-size: 20px;
+            color: $color-beige;
+        }
+    } 
+}
+
+.examples_desktop {
+    display: grid;
+    grid-template-rows: repeat(36, 30px);
+    grid-template-columns: repeat(15, 1fr);
+    background-color: $color-white;
+    width: 100%;
+    @media (max-width: $display-tablet) {
+        display: none;
+    }
+    &--menu {
+        @include flex-container(column, center, flex-start);
+        z-index: 2;
+        grid-area: 5 / 2 / span 25 / span 3; 
+    }
+
+    &--heading {
+        font-family: $yesevaOne;
+        font-size: 27px;
+        text-transform: $heading-text;
+        color: $color-beige;
+    }
+
+    &--nav {
+        list-style: none;
+        padding: 0;
+
+            &-link {
+                @include link-styling();
+                padding: 20px 0 0 0;
+                font-family: $proximaNova;
+                font-size: 20px;
+                text-transform: none;
+
+                &:hover {
+                    color: $color-beige;
+                    border-bottom: 1px solid $color-beige;
+                    margin-bottom: -1px;
+                }
+            }
+    }
+    
+    &--background {
+        z-index: 1;
+        grid-area: 5 / 1 / span 30 / span 15;
+        filter: brightness(25%);
+        background-image: url("./assets/images/examples-bg.png");
+        background-size: cover;
+    }
+
+    &--item_1 {
+        z-index: 2;
+        grid-area: 3 / 6 / span 18 / span 4;
+        background-image: url("./assets/images/example-1.png");
+        background-size: cover;        
+    }
+
+    &--item_2 {
+        z-index: 2;
+        grid-area: 22 / 6 / span 14 / span 4;
+        background-image: url("./assets/images/type-1.png");
+        background-size: cover;
+    }
+
+    &--item_3 {
+        z-index: 2;
+        grid-area: 1 / 11 / span 10 / span 4;
+        background-image: url("./assets/images/example-2.png");
+        background-size: cover;
+    }
+
+    &--item_4 {
+        z-index: 2;
+        grid-area: 12 / 11 / span 22 / span 4;
+        background-image: url("./assets/images/example-3.png");
+        background-size: cover;
+    }
+}
+
+
+.examples_mobile {
+    @media (min-width: $display-tablet) {
+        display: none;
+    }
+    @media (max-width: $display-tablet) {
+        @include flex-container(column, space-between, center);  
+        background: linear-gradient($color-white 50%, $color-dark 50%);          
+    }
+
+    &--heading {
+        width: 80%;
+        text-align: center;
+        font-family: $yesevaOne;
+        font-size: 27px;
+        text-transform: $heading-text;
+        color: $color-beige;
+    }
+
+    &--slider {
+        @include flex-container(row, space-between, center);
+        width: 90%;
+        height: 400px;            
+        background-image: url("./assets/images/examples-slider.png");
+        background-size: cover;
+        &-button_prev {
+            @include button-styling();
+            border-radius: 50%;
+            margin-left: 10%;
+        }
+        &-button_next {
+            @include button-styling();
+            border-radius: 50%;
+            margin-right: 10%;
+        }
+    }
+}
+
+.design {
+    padding-top: 50px;
+    @include flex-container(column, flex-start, center);
+    @media (min-width: $display-tablet) {
+        background: linear-gradient(0deg, $color-dark 50%, $color-white 50%);
+    }
+    @media (max-width: $display-tablet) {
+        background: $color-dark;         
+    }
+
+    &--heading {
+        @media (min-width: $display-tablet) {
+            color: $color-dark;
+        }
+        @media (max-width: $display-tablet) {
+            color: $color-white;         
+        }
+        margin: 0;
+        font-family: $yesevaOne;
+        font-size: 16px;
+        text-transform: $heading-text;
+    }
+
+    &--heading_icon {
+        @include heading-icon();
+        max-width: 200px;
+    }
+
+    &--description {
+        @media (min-width: $display-tablet) {
+            color: $color-dark;
+        }
+        @media (max-width: $display-tablet) {
+            color: $color-white;         
+        }
+        font-family: $futuraBook;
+        font-size: 20px;
+        color: $color-dark;
+        max-width: 700px;
+        text-align: center;
+    }
+
+    &--container {
+        @include flex-container(row, space-around, flex-start);
+        flex-wrap: wrap;
+        width: 90%;
+    }
+
+    &--block_1 {
+        @media (min-width: $display-tablet) {
+            @include info-block(40px, 40px, 13);
+        }
+        @media (max-width: $display-tablet) {
+            @include info-block(40px, 34px, 13);            
+        }
+
+        &-image {
+            width: 100%;
+            filter: brightness(60%);
+            grid-area: 1 / 1 / span 10 / span 10;
+        }
+
+        &-text {
+            @media (min-width: $display-tablet) {
+                @include info-block-text();
+                grid-area: 8 / 2 / span 5 / span 8;
+            }
+            @media (max-width: $display-tablet) {
+                @include info-block-text();
+                grid-area: 8 / 1 / span 5 / span 8;           
+            }
+        } 
+
+        &-heading {
+            margin: 0;
+        }
+
+        &-list {
+            padding: 0 0 0 15px;
+            & > li {
+                padding-top: 5px;
+            }
+        }
+        
+        &-pricing {
+            @media (min-width: $display-tablet) {
+                @include info-block-additional();
+                grid-area: 12 / 2 / span 2 / span 5;
+            }
+            @media (max-width: $display-tablet) {
+                @include info-block-additional();
+                grid-area: 12 / 1 / span 2 / span 5;          
+            }
+            text-transform: uppercase;
+        }
+    }
+
+    &--block_2 {
+        @media (min-width: $display-tablet) {
+            @include info-block(40px, 40px, 15);
+        }
+        @media (max-width: $display-tablet) {
+            @include info-block(40px, 34px, 15);          
+        }
+
+        &-image {
+            width: 100%;
+            filter: brightness(60%);
+            grid-area: 1 / 1 / span 10 / span 10;
+        }
+
+        &-text {
+            @media (min-width: $display-tablet) {
+                @include info-block-text();
+                grid-area: 8 / 2 / span 7 / span 8;
+            }
+            @media (max-width: $display-tablet) {
+                @include info-block-text();
+                grid-area: 8 / 1 / span 7 / span 8;         
+            }
+        }
+
+        &-heading {
+            margin: 0;
+        }
+
+        &-list {
+            padding: 0 0 0 15px;
+            & > li {
+                padding-top: 5px;
+            }
+        }
+        
+        &-pricing {
+            @media (min-width: $display-tablet) {
+                @include info-block-additional();
+                grid-area: 14 / 2 / span 2 / span 5;
+            }
+            @media (max-width: $display-tablet) {
+                @include info-block-additional();
+                grid-area: 14 / 1 / span 2 / span 5;         
+            }
+            text-transform: uppercase;
+        }
+    }
+    &--block_3 {
+        @media (min-width: $display-tablet) {
+            @include info-block(40px, 40px, 18);
+        }
+        @media (max-width: $display-tablet) {
+            @include info-block(40px, 34px, 18);          
+        }
+
+        &-img {
+            width: 100%;
+            filter: brightness(60%);
+            grid-area: 1 / 1 / span 10 / span 10;
+        }
+
+        &-text {
+            @media (min-width: $display-tablet) {
+                @include info-block-text();
+                grid-area: 8 / 2 / span 10 / span 8;
+            }
+            @media (max-width: $display-tablet) {
+                @include info-block-text();
+                grid-area: 8 / 1 / span 10 / span 8;        
+            }
+        }
+
+        &-heading {
+            margin: 0;
+        }
+
+        &-list {
+            padding: 0 0 0 15px;
+            & > li {
+                padding-top: 5px;
+            }
+        }
+        
+
+        &-pricing {
+            @media (min-width: $display-tablet) {
+                @include info-block-additional();
+                grid-area: 17 / 2 / span 2 / span 5;
+            }
+            @media (max-width: $display-tablet) {
+                @include info-block-additional();
+                grid-area: 17 / 1 / span 2 / span 5;        
+            }
+            text-transform: uppercase;
+        }
+    }
+}      
+
+
+.workflow {
+    @include flex-container(row, space-around, flex-start);
+
+    &--main {
+        @media (min-width: $display-tablet) {
+            @include flex-container(column, space-between, flex-start);
+        }
+        @media (max-width: $display-tablet) {
+            display: none;
+        }
+        height: 100%;
+        max-width: 30%;
+        min-width: 20%;
+        padding: 0 0 0 5%;
+    }
+
+    &--side_heading {
+        @include fancy-heading(40px, 180px, 80px, 1px);
+    }
+
+    &--description_text {
+        font-size: $desctiprion-text-size;
+        font-family: $futuraBook;
+        color: $color-white;
+        text-transform: $heading-text;
+        line-height: 20px;
+    }
+
+    &--info_block {
+        @include fancy-article(80%);
+    }
+
+    &--transition {
+        @include transition();
+    }
+    
+    &--examples {
+        @media (min-width: $display-tablet) {
+            @include flex-container(column, flex-start, space-between);
+            width: 60%;
+        }
+        @media (max-width: $display-tablet) {
+            @include flex-container(column, center, center);
+            width: 90%;
+        }
+        @media (max-width: $display-mobile) {
+            display: none;
+        }
+
+        &-image {
+            margin: 0 auto;
+            img {
+                width: 80%;
+                height: 80%;
+            }
+        }
+    }
+
+    &--menu {
+        width: 100%;
+    }
+
+    &--menu_nav {
+        padding: 0;
+        @include flex-container(row, space-between, flex-start);
+        flex-wrap: wrap;
+        list-style: none;
+    }
+
+    &--menu_nav-option {
+        flex-basis: 30%;
+        margin-left: 0;
+        &:hover {
+            color: $color-white;
+        }
+        .nav-item {
+            @include link-styling();
+            color: $color-grey;
+        }
+        .nav-text {
+            font-family: $yesevaOne;
+            font-size: 15px;
+            color: $color-grey;
+        }
+    }
+}
+
+
+.team {
+    padding-top: 50px;
+    @include flex-container(column, flex-start, center);
+    @media (min-width: $display-tablet) {
+        background: linear-gradient(0deg, $color-white 50%, $color-dark 50%);
+    }
+    @media (max-width: $display-mobile) {
+        background: $color-dark;       
+    }
+    .team-heading {
+        margin: 0;
+        font-family: $yesevaOne;
+        font-size: 16px;
+        text-transform: $heading-text;
+        color: $color-white;
+    }
+    .team-heading-icon {
+        @include heading-icon();
+        max-width: 200px;
+    }
+    .team-description {
+        font-family: $futuraBook;
+        font-size: 20px;
+        color: $color-white;
+        max-width: 500px;
+        text-align: center;
+    }
+    .team-container {
+        @include flex-container(row, space-around, flex-start);
+        flex-wrap: wrap;
+        width:70%;
+        .team-block {
+            @include info-block(30px, 30px, 13);
+            margin-top: 10px;
+            .team-member-icon {
+                grid-area: 1 / 1 / span 2 / span 2;
+                width: 100%;
+                margin: 0;
+                z-index: 2;
+                background-color: $color-beige;
+                & > img {
+                    margin: 25%;
+                    width: 50%;
+                }
+            }
+            .team-img {
+                grid-area: 2 / 2 / span 5 / span 8;
+                width: 100%;
+            }
+            .team-text {
+                @include info-block-text(10px);
+                grid-area: 10 / 3 / 13 / span 6;
+                text-align: center;
+                padding-right: 10px;
+                .team-text-heading {
+                    margin: 0;
+                    padding-top: 10px;
+                    font-family: $yesevaOne;
+                    font-size: 14px;
+                    text-transform: $heading-text;
+                    color: $color-dark;
+                }
+                .specialization {
+                    font-family: $roboto;
+                    color: $color-grey;
+                }
+            }
+            .team-expirience {
+                @include info-block-additional();
+                grid-area: 13 / 3 / 14 / span 6;
+                margin: 0;
+                font-size: 10px;
+                text-transform: uppercase;
+                padding-top: 10px;
+            }
+        }
+        /* .team-block-2 {
+            @include info-block(30px, 30px, 13);
+            margin-top: 10px;
+            .team-member-icon {
+                grid-area: 1 / 1 / span 2 / span 2;
+                width: 100%;
+                margin: 0;
+                z-index: 2;
+                background-color: $color-beige;
+                & > img {
+                    margin: 25%;
+                    width: 50%;
+                }
+            }
+            .team-img {
+                grid-area: 2 / 2 / span 5 / span 8;
+                width: 100%;
+            }
+            .team-text {
+                @include info-block-text(10px);
+                grid-area: 10 / 3 / 13 / span 6;
+                text-align: center;
+                padding-right: 10px;
+                .team-text-heading {
+                    margin: 0;
+                    padding-top: 10px;
+                    font-family: $yesevaOne;
+                    font-size: 14px;
+                    text-transform: $heading-text;
+                    color: $color-dark;
+                }
+                .specialization {
+                    font-family: $roboto;
+                    color: $color-grey;
+                }
+            }
+            .team-expirience {
+                @include info-block-additional();
+                grid-area: 13 / 3 / 14 / span 6;
+                margin: 0;
+                font-size: 10px;
+                text-transform: uppercase;
+                padding-top: 10px;
+            }
+        }
+        .team-block-3 {
+            @include info-block(30px, 30px, 13);
+            margin-top: 10px;
+            .team-member-icon {
+                grid-area: 1 / 1 / span 2 / span 2;
+                width: 100%;
+                margin: 0;
+                z-index: 2;
+                background-color: $color-beige;
+                & > img {
+                    margin: 25%;
+                    width: 50%;
+                }
+            }
+            .team-img {
+                grid-area: 2 / 2 / span 5 / span 8;
+                width: 100%;
+            }
+            .team-text {
+                @include info-block-text(10px);
+                grid-area: 10 / 3 / 13 / span 6;
+                text-align: center;
+                padding-right: 10px;
+                .team-text-heading {
+                    margin: 0;
+                    padding-top: 10px;
+                    font-family: $yesevaOne;
+                    font-size: 14px;
+                    text-transform: $heading-text;
+                    color: $color-dark;
+                }
+                .specialization {
+                    font-family: $roboto;
+                    color: $color-grey;
+                }
+            }
+            .team-expirience {
+                @include info-block-additional();
+                grid-area: 13 / 3 / 14 / span 6;
+                margin: 0;
+                font-size: 10px;
+                text-transform: uppercase;
+                padding-top: 10px;
+            }
+        }
+    } */
+    .about-team {
+        @media (max-width: $display-mobile) {
+            display: none;      
+        }
+        padding-top: 40px;
+        position: relative;
+        font-family: $futuraBook;
+        font-size: 20px;
+        color: $color-dark;
+        max-width: 600px;
+        text-align: center;
+        &::before {
+            position: absolute;
+            content: "";
+            top: 10px;
+            left: 45%;
+            width: 50px;
+            border: 2px solid $color-beige;
+        }
+    }
+    
+}
+
+.clients {
+    @media (min-width: $display-tablet) {
+        @include flex-container(column, space-around, center);
+    }
+    @media (max-width: $display-tablet) {
+        @include flex-container(column, space-around, center);
+    }
+    @media (max-width: $display-mobile) {
+        display: none;
+    }
+    
+    flex-wrap: wrap;
+    padding: 60px 0 60px;
+    background-color: $color-white;
+    .clients-heading {
+        margin: 50px 0 0;
+        font-family: $yesevaOne;
+        font-size: 16px;
+        text-transform: $heading-text;
+        color: $color-dark;
+    }
+    .clients-heading-icon {
+        @include heading-icon();
+        max-width: 200px;
+    }
+    .clients-description {
+        font-family: $futuraBook;
+        font-size: 20px;
+        color: $color-dark;
+        max-width: 400px;
+        text-align: center;
+    }
+    .reviews-container {
+        width: 90%;
+        @include flex-container(row, space-around, center);
+        flex-wrap: wrap;
+        .review-item {
+            position: relative;
+            @include flex-container(column, space-between, flex-start);
+            min-width: 345px;
+            max-width: 30%;
+            height: 350px;
+            margin: 0 0 50px 0;
+            background-color: $color-white;
+            box-shadow: 0px 3px 3px 3px rgba(0,0,0,0.15);
+            .review-text {
+                grid-area: 1 / 1 / 15 / 11;
+                padding: 10px 0 0 0;
+                .review-heading {
+                    @include flex-container(row, space-around, center);
+                    img {
+                        border-radius: 50%;
+                    }
+                    h6 {
+                        margin: 0;
+                        font-family: $yesevaOne;
+                        font-size: 14px;
+                        text-transform: $heading-text;
+                        color: $color-dark; 
+                    }
+                }
+                article {
+                    margin: 0;
+                    font-family: $yesevaOne;
+                    font-size: 15px;
+                    line-height: 20px;
+                    color: $color-grey;
+                    padding: 5px 10px 0;
+                    text-align: justify;
+                }
+            }
+            .review-stats {
+                position: absolute;
+                z-index: 2;
+                @media (min-width: $display-tablet) {
+                    top: 25px;
+                }
+                @media (max-width: $display-mobile) {
+                    top: 5px;      
+                }
+                
+                @include flex-container(row, space-around, center);
+                width: 80%;
+                height: 50px;
+                background-color: $color-beige;
+                padding: 0;
+                margin: 0;
+                & > p {
+                    position: relative;
+                    text-align: center;
+                    margin: 0;
+                    padding: 0;
+                    background-color: $color-beige;
+                    color: $color-white;
+                    font-family: $yesevaOne;
+                    font-size: 18px;
+                }
+                .space::after {
+                    position: absolute;
+                    content: "";
+                    transform: rotate(90deg);
+                    width: 40px;
+                    top: 40%;
+                    left: 80%;
+                    border-bottom: 2px solid $color-white;
+                }
+                & > img {
+                    border-radius: 0;
+                    padding: 0;
+                }
+            }
+        }
+    }
+}
+
+.location {
+    @include flex-container(column, flex-start, center);
+    @media (min-width: $display-tablet) {
+        background: url("./assets/images/location-bg.png") no-repeat;
+        background-position-y: 200px;
+        background-size: cover;
+        background-color: $color-white;
+    }
+    @media (max-width: $display-mobile) {
+        background: url("./assets/images/location-bg.png") no-repeat;
+        background-position-y: 200px;
+        background-size: cover;
+        background-color: $color-white;         
+    }
+    @media (max-width: $display-mobile) {
+        background-position-y: none;
+        background-color: $color-dark;
+    }
+    background: url("./assets/images/location-bg.png") no-repeat;
+    background-position-y: 200px;
+    background-size: cover;
+    background-color: $color-white;
+    .location-form {
+        @extend %form;
+        .button {
+            min-width: 150px;
+        }
+    }
+    .location-heading {
+        max-width: 500px;
+        text-align: center;
+        font-family: $yesevaOne;
+        font-size: 20px;
+        text-transform: $heading-text;
+        color: $color-beige;
+    }
+    .location-icons {
+        @include flex-container(row, space-between, center);
+        width: 100px;
+        & > img {
+            padding: 10px;
+            border-radius: 50%;
+            background-color: $color-beige;
+        }
+    }
+    .location-image {
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+}
+
+.footer {
+    @media (max-width: $display-mobile) {
+        display: none;       
     }
 }
