@@ -657,7 +657,6 @@ $parent-position: relative;
     }
 }
 
-
 .projects {
     @include flex-container(row, space-evenly, flex-end);
     padding: 60px 0 0 0;
@@ -1030,7 +1029,6 @@ $parent-position: relative;
     }
 }  
 
-
 .contact {
     @include flex-container(row, flex-start, flex-start);
     width: 100%;
@@ -1083,40 +1081,40 @@ $parent-position: relative;
     &--form {
         @extend %form;
         grid-template-rows: repeat(6, 1fr);
-
-        &-heading {
-            min-width: 70%;
-            grid-area: 1 / 1 / 2 / 3;
-            justify-self: center; 
-            text-transform: none;
-        }
-
-        &-name {
-            grid-area: 2 / 1 / 3 / 3; 
-            justify-self: left;
-        }
-
-        &-phone { 
-            grid-area: 3 / 1 / 4 / 3;
-            justify-self: left; 
-        }
-
-        &-additional {
-            grid-area: 4 / 1 / 5 / 3;
-            justify-self: left; 
-        }
-
-        &-checkbox {
-            grid-area: 5 / 1 / 6 / 3; 
-            justify-self: left;
-        }
-
-        &-button {
-            grid-area: 6 / 1 / 7 / 3;
-            justify-self: right;
-        }
     }
 
+    &--form_heading {
+        min-width: 70%;
+        grid-area: 1 / 1 / 2 / 3;
+        justify-self: center; 
+        text-transform: none;
+    }
+
+    &--form_name {
+        grid-area: 2 / 1 / 3 / 3; 
+        justify-self: left;
+    }
+
+    &--form_phone { 
+        grid-area: 3 / 1 / 4 / 3;
+        justify-self: left; 
+    }
+
+    &--form_additional {
+        grid-area: 4 / 1 / 5 / 3;
+        justify-self: left; 
+    }
+
+    &--form_checkbox {
+        grid-area: 5 / 1 / 6 / 3; 
+        justify-self: left;
+    }
+
+    &--form_button {
+        grid-area: 6 / 1 / 7 / 3;
+        justify-self: right;
+    }
+    
     &--note {
         @media (min-width: $display-tablet) {
             @include flex-container(row, space-between, center);
@@ -1217,7 +1215,6 @@ $parent-position: relative;
         background-size: cover;
     }
 }
-
 
 .examples_mobile {
     @media (min-width: $display-tablet) {
@@ -1452,7 +1449,6 @@ $parent-position: relative;
     }
 }      
 
-
 .workflow {
     @include flex-container(row, space-around, flex-start);
 
@@ -1540,9 +1536,8 @@ $parent-position: relative;
     }
 }
 
-
 .team {
-    padding-top: 50px;
+    padding-top: 40px;
     @include flex-container(column, flex-start, center);
     @media (min-width: $display-tablet) {
         background: linear-gradient(0deg, $color-white 50%, $color-dark 50%);
@@ -1550,165 +1545,87 @@ $parent-position: relative;
     @media (max-width: $display-mobile) {
         background: $color-dark;       
     }
-    .team-heading {
+
+    &--heading {
         margin: 0;
         font-family: $yesevaOne;
         font-size: 16px;
         text-transform: $heading-text;
         color: $color-white;
     }
-    .team-heading-icon {
+
+    &--heading_icon {
         @include heading-icon();
         max-width: 200px;
     }
-    .team-description {
+
+    &--description {
         font-family: $futuraBook;
         font-size: 20px;
         color: $color-white;
         max-width: 500px;
         text-align: center;
     }
-    .team-container {
+
+    &--container {
         @include flex-container(row, space-around, flex-start);
         flex-wrap: wrap;
         width:70%;
-        .team-block {
-            @include info-block(30px, 30px, 13);
-            margin-top: 10px;
-            .team-member-icon {
-                grid-area: 1 / 1 / span 2 / span 2;
-                width: 100%;
-                margin: 0;
-                z-index: 2;
-                background-color: $color-beige;
-                & > img {
-                    margin: 25%;
-                    width: 50%;
-                }
-            }
-            .team-img {
-                grid-area: 2 / 2 / span 5 / span 8;
-                width: 100%;
-            }
-            .team-text {
-                @include info-block-text(10px);
-                grid-area: 10 / 3 / 13 / span 6;
-                text-align: center;
-                padding-right: 10px;
-                .team-text-heading {
-                    margin: 0;
-                    padding-top: 10px;
-                    font-family: $yesevaOne;
-                    font-size: 14px;
-                    text-transform: $heading-text;
-                    color: $color-dark;
-                }
-                .specialization {
-                    font-family: $roboto;
-                    color: $color-grey;
-                }
-            }
-            .team-expirience {
-                @include info-block-additional();
-                grid-area: 13 / 3 / 14 / span 6;
-                margin: 0;
-                font-size: 10px;
-                text-transform: uppercase;
-                padding-top: 10px;
+    }
+
+    &--block {
+        @include info-block(30px, 30px, 13);
+        margin-top: 10px;
+
+        &-member_icon {
+            grid-area: 1 / 1 / span 2 / span 2;
+            width: 100%;
+            margin: 0;
+            z-index: 2;
+            background-color: $color-beige;
+            & > img {
+                margin: 25%;
+                width: 50%;
             }
         }
-        /* .team-block-2 {
-            @include info-block(30px, 30px, 13);
-            margin-top: 10px;
-            .team-member-icon {
-                grid-area: 1 / 1 / span 2 / span 2;
-                width: 100%;
-                margin: 0;
-                z-index: 2;
-                background-color: $color-beige;
-                & > img {
-                    margin: 25%;
-                    width: 50%;
-                }
-            }
-            .team-img {
-                grid-area: 2 / 2 / span 5 / span 8;
-                width: 100%;
-            }
-            .team-text {
-                @include info-block-text(10px);
-                grid-area: 10 / 3 / 13 / span 6;
-                text-align: center;
-                padding-right: 10px;
-                .team-text-heading {
-                    margin: 0;
-                    padding-top: 10px;
-                    font-family: $yesevaOne;
-                    font-size: 14px;
-                    text-transform: $heading-text;
-                    color: $color-dark;
-                }
-                .specialization {
-                    font-family: $roboto;
-                    color: $color-grey;
-                }
-            }
-            .team-expirience {
-                @include info-block-additional();
-                grid-area: 13 / 3 / 14 / span 6;
-                margin: 0;
-                font-size: 10px;
-                text-transform: uppercase;
-                padding-top: 10px;
-            }
+
+        &-image {
+            grid-area: 2 / 2 / span 5 / span 8;
+            width: 100%;
         }
-        .team-block-3 {
-            @include info-block(30px, 30px, 13);
-            margin-top: 10px;
-            .team-member-icon {
-                grid-area: 1 / 1 / span 2 / span 2;
-                width: 100%;
-                margin: 0;
-                z-index: 2;
-                background-color: $color-beige;
-                & > img {
-                    margin: 25%;
-                    width: 50%;
-                }
-            }
-            .team-img {
-                grid-area: 2 / 2 / span 5 / span 8;
-                width: 100%;
-            }
-            .team-text {
-                @include info-block-text(10px);
-                grid-area: 10 / 3 / 13 / span 6;
-                text-align: center;
-                padding-right: 10px;
-                .team-text-heading {
-                    margin: 0;
-                    padding-top: 10px;
-                    font-family: $yesevaOne;
-                    font-size: 14px;
-                    text-transform: $heading-text;
-                    color: $color-dark;
-                }
-                .specialization {
-                    font-family: $roboto;
-                    color: $color-grey;
-                }
-            }
-            .team-expirience {
-                @include info-block-additional();
-                grid-area: 13 / 3 / 14 / span 6;
-                margin: 0;
-                font-size: 10px;
-                text-transform: uppercase;
-                padding-top: 10px;
-            }
+
+        &-text {
+            @include info-block-text(10px);
+            grid-area: 10 / 3 / 13 / span 6;
+            text-align: center;
+            padding-right: 10px;
         }
-    } */
-    .about-team {
+
+        &-text_heading {
+            margin: 0;
+            padding-top: 10px;
+            font-family: $yesevaOne;
+            font-size: 14px;
+            text-transform: $heading-text;
+            color: $color-dark;
+        }
+
+        &-specialization {
+            font-family: $roboto;
+            color: $color-grey;
+        }
+
+        &-expirience {
+            @include info-block-additional();
+            grid-area: 13 / 3 / 14 / span 6;
+            margin: 0;
+            font-size: 10px;
+            text-transform: uppercase;
+            padding-top: 10px;
+        }
+    }
+
+    &--about {
         @media (max-width: $display-mobile) {
             display: none;      
         }
@@ -1719,6 +1636,7 @@ $parent-position: relative;
         color: $color-dark;
         max-width: 600px;
         text-align: center;
+
         &::before {
             position: absolute;
             content: "";
@@ -1727,8 +1645,7 @@ $parent-position: relative;
             width: 50px;
             border: 2px solid $color-beige;
         }
-    }
-    
+    }  
 }
 
 .clients {
@@ -1741,110 +1658,124 @@ $parent-position: relative;
     @media (max-width: $display-mobile) {
         display: none;
     }
-    
     flex-wrap: wrap;
     padding: 60px 0 60px;
     background-color: $color-white;
-    .clients-heading {
+
+    &--heading {
         margin: 50px 0 0;
         font-family: $yesevaOne;
         font-size: 16px;
         text-transform: $heading-text;
         color: $color-dark;
     }
-    .clients-heading-icon {
+
+    &--heading_icon {
         @include heading-icon();
         max-width: 200px;
     }
-    .clients-description {
+
+    &--description {
         font-family: $futuraBook;
         font-size: 20px;
         color: $color-dark;
         max-width: 400px;
         text-align: center;
     }
-    .reviews-container {
+
+    &--reviews_container {
         width: 90%;
         @include flex-container(row, space-around, center);
         flex-wrap: wrap;
-        .review-item {
-            position: relative;
-            @include flex-container(column, space-between, flex-start);
-            min-width: 345px;
-            max-width: 30%;
-            height: 350px;
-            margin: 0 0 50px 0;
-            background-color: $color-white;
-            box-shadow: 0px 3px 3px 3px rgba(0,0,0,0.15);
-            .review-text {
-                grid-area: 1 / 1 / 15 / 11;
-                padding: 10px 0 0 0;
-                .review-heading {
-                    @include flex-container(row, space-around, center);
-                    img {
-                        border-radius: 50%;
-                    }
-                    h6 {
-                        margin: 0;
-                        font-family: $yesevaOne;
-                        font-size: 14px;
-                        text-transform: $heading-text;
-                        color: $color-dark; 
-                    }
-                }
-                article {
-                    margin: 0;
-                    font-family: $yesevaOne;
-                    font-size: 15px;
-                    line-height: 20px;
-                    color: $color-grey;
-                    padding: 5px 10px 0;
-                    text-align: justify;
-                }
-            }
-            .review-stats {
-                position: absolute;
-                z-index: 2;
-                @media (min-width: $display-tablet) {
-                    top: 25px;
-                }
-                @media (max-width: $display-mobile) {
-                    top: 5px;      
-                }
-                
-                @include flex-container(row, space-around, center);
-                width: 80%;
-                height: 50px;
-                background-color: $color-beige;
-                padding: 0;
-                margin: 0;
-                & > p {
-                    position: relative;
-                    text-align: center;
-                    margin: 0;
-                    padding: 0;
-                    background-color: $color-beige;
-                    color: $color-white;
-                    font-family: $yesevaOne;
-                    font-size: 18px;
-                }
-                .space::after {
-                    position: absolute;
-                    content: "";
-                    transform: rotate(90deg);
-                    width: 40px;
-                    top: 40%;
-                    left: 80%;
-                    border-bottom: 2px solid $color-white;
-                }
-                & > img {
-                    border-radius: 0;
-                    padding: 0;
-                }
-            }
+    }
+
+    &--review_item {
+        position: relative;
+        @include flex-container(column, space-between, flex-start);
+        min-width: 345px;
+        max-width: 30%;
+        height: 350px;
+        margin: 0 0 50px 0;
+        background-color: $color-white;
+        box-shadow: 0px 3px 3px 3px rgba(0,0,0,0.15);
+    }
+
+    &--review_heading {
+        @include flex-container(row, space-around, center);
+
+        & > img {
+            border-radius: 50%;
+        }
+
+        & > h6 {
+            margin: 0;
+            font-family: $yesevaOne;
+            font-size: 14px;
+            text-transform: $heading-text;
+            color: $color-dark; 
+        }
+    }
+
+    &--review_text {
+        grid-area: 1 / 1 / 15 / 11;
+        padding: 10px 0 0 0;
+        & > article {
+            margin: 0;
+            font-family: $yesevaOne;
+            font-size: 15px;
+            line-height: 20px;
+            color: $color-grey;
+            padding: 5px 10px 0;
+            text-align: justify;
+        }
+    }
+
+    &--review_stats {
+        @include flex-container(row, space-around, center);
+        @media (min-width: $display-tablet) {
+            top: 25px;
+        }
+        @media (max-width: $display-tablet) {
+            top: 5px;
+        }
+        @media (max-width: $display-mobile) {
+            top: 5px;      
+        }
+        
+        z-index: 2;
+        width: 80%;
+        height: 50px;
+        padding: 0;
+        margin: 0;
+        background-color: $color-beige;
+
+        & > p {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: $color-beige;
+            color: $color-white;
+            font-family: $yesevaOne;
+            font-size: 18px;
+        }
+
+        & > img {
+            border-radius: 0;
+            padding: 0;
+        }
+
+        &-space::after {
+            position: absolute;
+            content: "";
+            transform: rotate(90deg);
+            width: 50px;
+            top: 45%;
+            left: 40%;
+            border-bottom: 2px solid $color-white;
         }
     }
 }
+
 
 .location {
     @include flex-container(column, flex-start, center);
