@@ -38,35 +38,6 @@ button, input[type="submit"], input[type="text"], input[type="phone"], input[typ
   outline: inherit;
 }
 
-.contact--form, .location .location-form {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-rows: (1fr)[5];
-      grid-template-rows: repeat(5, 1fr);
-  -ms-grid-columns: (1fr)[2];
-      grid-template-columns: repeat(2, 1fr);
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  justify-items: center;
-  min-width: 30%;
-  padding: 0 5% 0;
-  background-color: #131313;
-}
-
-@media (min-width: 1024px) {
-  .contact--form, .location .location-form {
-    padding: 0 5% 0;
-  }
-}
-
-@media (max-width: 1024px) {
-  .contact--form, .location .location-form {
-    width: 100%;
-    padding: 0;
-  }
-}
-
 .outer-wrapper {
   z-index: -2;
   display: -webkit-box;
@@ -1537,6 +1508,10 @@ button, input[type="submit"], input[type="text"], input[type="phone"], input[typ
 
 .types--image_item-heading {
   margin: 0;
+  font-family: "YesevaOne", sans-serif;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #131313;
 }
 
 .types--image_item-list {
@@ -1823,16 +1798,48 @@ button, input[type="submit"], input[type="text"], input[type="phone"], input[typ
 }
 
 .contact--form {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: (1fr)[5];
+      grid-template-rows: repeat(5, 1fr);
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  justify-items: center;
+  min-width: 30%;
+  padding: 0 5% 0;
+  background-color: #131313;
   -ms-grid-rows: (1fr)[6];
       grid-template-rows: repeat(6, 1fr);
 }
 
+@media (min-width: 1024px) {
+  .contact--form {
+    padding: 0 5% 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .contact--form {
+    width: 100%;
+    padding: 0;
+  }
+}
+
 .contact--form_heading {
-  min-width: 70%;
   -ms-grid-row: 1;
   -ms-grid-row-span: 1;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
+  grid-area: 1 / 1 / 2 / 3;
+  font-family: "YesevaOne", sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-align: center;
+  min-width: 70%;
   grid-area: 1 / 1 / 2 / 3;
   -ms-grid-column-align: center;
       justify-self: center;
@@ -1843,50 +1850,246 @@ button, input[type="submit"], input[type="text"], input[type="phone"], input[typ
   -ms-grid-row: 2;
   -ms-grid-row-span: 1;
   -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
+  -ms-grid-column-span: 1;
+  grid-area: 2 / 1 / 3 / 2;
   grid-area: 2 / 1 / 3 / 3;
   -ms-grid-column-align: left;
       justify-self: left;
 }
 
+.contact--form_name label[for=name] {
+  font-family: "FuturaBookC", sans-serif;
+  color: #595959;
+}
+
+@media (min-width: 1024px) {
+  .contact--form_name label[for=name] {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .contact--form_name label[for=name] {
+    font-size: 12px;
+  }
+}
+
+.contact--form_name input[type=text] {
+  font-family: "FuturaBookC", sans-serif;
+  color: #ffffff;
+  border-bottom: 1px solid #595959;
+  cursor: default;
+}
+
+@media (min-width: 1024px) {
+  .contact--form_name input[type=text] {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .contact--form_name input[type=text] {
+    font-size: 14px;
+  }
+}
+
 .contact--form_phone {
-  -ms-grid-row: 3;
+  -ms-grid-row: 2;
   -ms-grid-row-span: 1;
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-area: 2 / 2 / 3 / 3;
   grid-area: 3 / 1 / 4 / 3;
   -ms-grid-column-align: left;
       justify-self: left;
 }
 
+.contact--form_phone label[for=phone] {
+  font-family: "FuturaBookC", sans-serif;
+  color: #595959;
+}
+
+@media (min-width: 1024px) {
+  .contact--form_phone label[for=phone] {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .contact--form_phone label[for=phone] {
+    font-size: 12px;
+  }
+}
+
+.contact--form_phone input[type=phone] {
+  font-family: "FuturaBookC", sans-serif;
+  color: #ffffff;
+  border-bottom: 1px solid #595959;
+  cursor: default;
+}
+
+@media (min-width: 1024px) {
+  .contact--form_phone input[type=phone] {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .contact--form_phone input[type=phone] {
+    font-size: 14px;
+  }
+}
+
 .contact--form_additional {
-  -ms-grid-row: 4;
-  -ms-grid-row-span: 1;
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 2;
   -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
+  -ms-grid-column-span: 1;
+  grid-area: 3 / 1 / 5 / 2;
   grid-area: 4 / 1 / 5 / 3;
   -ms-grid-column-align: left;
       justify-self: left;
 }
 
+.contact--form_additional label[for=additional] {
+  font-family: "FuturaBookC", sans-serif;
+  color: #595959;
+}
+
+@media (min-width: 1024px) {
+  .contact--form_additional label[for=additional] {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .contact--form_additional label[for=additional] {
+    font-size: 12px;
+  }
+}
+
+.contact--form_additional input[name=additional] {
+  font-family: "FuturaBookC", sans-serif;
+  color: #ffffff;
+  border-bottom: 1px solid #595959;
+  cursor: default;
+}
+
+@media (min-width: 1024px) {
+  .contact--form_additional input[name=additional] {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .contact--form_additional input[name=additional] {
+    font-size: 14px;
+  }
+}
+
 .contact--form_checkbox {
-  -ms-grid-row: 5;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  -ms-grid-row: 4;
   -ms-grid-row-span: 1;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
+  grid-area: 4 / 1 / 5 / 3;
   grid-area: 5 / 1 / 6 / 3;
   -ms-grid-column-align: left;
       justify-self: left;
 }
 
+.contact--form_checkbox > input[type=checkbox] {
+  vertical-align: bottom;
+  height: 18px;
+  width: 18px;
+}
+
+.contact--form_checkbox > input[type=checkbox]:checked {
+  background-color: #E3B873;
+  color: #ffffff;
+}
+
+.contact--form_checkbox > label {
+  font-family: "FuturaBookC", sans-serif;
+  font-size: 16px;
+  color: #ffffff;
+}
+
 .contact--form_button {
-  -ms-grid-row: 6;
-  -ms-grid-row-span: 1;
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
-  grid-area: 6 / 1 / 7 / 3;
-  -ms-grid-column-align: right;
-      justify-self: right;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: center;
+          flex-direction: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 40px;
+  max-width: 250px;
+  background-color: #E3B873;
+  color: #ffffff;
+  padding: 0 20px;
+  font-family: "FuturaDemic", sans-serif;
+  font-size: 13px;
+  text-transform: uppercase;
+  cursor: pointer;
+  justify-self: center;
+  justify-self: right;
+}
+
+.contact--form_button:hover {
+  border: 1px solid #131313;
+  background-color: #ffffff;
+  color: #131313;
+}
+
+@media (min-width: 1024px) {
+  .contact--form_button {
+    -ms-grid-row: 5;
+    -ms-grid-row-span: 1;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: 5 / 1 / 6 / 3;
+  }
+}
+
+@media (max-width: 1024px) {
+  .contact--form_button {
+    -ms-grid-row: 5;
+    -ms-grid-row-span: 1;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: 5 / 1 / 6 / 3;
+    width: 90%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .contact--form_button {
+    -ms-grid-row: 6;
+    -ms-grid-row-span: 1;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: 6 / 1 / 7 / 3;
+  }
+}
+
+@media (max-width: 1024px) {
+  .contact--form_button {
+    -ms-grid-row: 6;
+    -ms-grid-row-span: 1;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: 6 / 1 / 7 / 3;
+  }
 }
 
 .contact--note {
@@ -2380,6 +2583,10 @@ button, input[type="submit"], input[type="text"], input[type="phone"], input[typ
 
 .design--block_1-heading {
   margin: 0;
+  font-family: "YesevaOne", sans-serif;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #131313;
 }
 
 .design--block_1-list {
@@ -2501,6 +2708,10 @@ button, input[type="submit"], input[type="text"], input[type="phone"], input[typ
 
 .design--block_2-heading {
   margin: 0;
+  font-family: "YesevaOne", sans-serif;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #131313;
 }
 
 .design--block_2-list {
@@ -2573,7 +2784,7 @@ button, input[type="submit"], input[type="text"], input[type="phone"], input[typ
   }
 }
 
-.design--block_3-img {
+.design--block_3-image {
   width: 100%;
   -webkit-filter: brightness(60%);
           filter: brightness(60%);
@@ -2622,6 +2833,10 @@ button, input[type="submit"], input[type="text"], input[type="phone"], input[typ
 
 .design--block_3-heading {
   margin: 0;
+  font-family: "YesevaOne", sans-serif;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #131313;
 }
 
 .design--block_3-list {
@@ -3129,6 +3344,12 @@ button, input[type="submit"], input[type="text"], input[type="phone"], input[typ
   text-align: center;
 }
 
+@media (max-width: 1024px) {
+  .team--about {
+    color: #ffffff;
+  }
+}
+
 @media (max-width: 375px) {
   .team--about {
     display: none;
@@ -3435,11 +3656,263 @@ button, input[type="submit"], input[type="text"], input[type="phone"], input[typ
   }
 }
 
-.location .location-form .button {
+.location--form {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: (1fr)[5];
+      grid-template-rows: repeat(5, 1fr);
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  justify-items: center;
+  min-width: 30%;
+  padding: 0 5% 0;
+  background-color: #131313;
+}
+
+@media (min-width: 1024px) {
+  .location--form {
+    padding: 0 5% 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .location--form {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+.location--form_heading {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: 1 / 1 / 2 / 3;
+  font-family: "YesevaOne", sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-align: center;
+}
+
+.location--form_name {
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-area: 2 / 1 / 3 / 2;
+}
+
+.location--form_name label[for=name] {
+  font-family: "FuturaBookC", sans-serif;
+  color: #595959;
+}
+
+@media (min-width: 1024px) {
+  .location--form_name label[for=name] {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .location--form_name label[for=name] {
+    font-size: 12px;
+  }
+}
+
+.location--form_name input[type=text] {
+  font-family: "FuturaBookC", sans-serif;
+  color: #ffffff;
+  border-bottom: 1px solid #595959;
+  cursor: default;
+}
+
+@media (min-width: 1024px) {
+  .location--form_name input[type=text] {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .location--form_name input[type=text] {
+    font-size: 14px;
+  }
+}
+
+.location--form_phone {
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-area: 2 / 2 / 3 / 3;
+}
+
+.location--form_phone label[for=phone] {
+  font-family: "FuturaBookC", sans-serif;
+  color: #595959;
+}
+
+@media (min-width: 1024px) {
+  .location--form_phone label[for=phone] {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .location--form_phone label[for=phone] {
+    font-size: 12px;
+  }
+}
+
+.location--form_phone input[type=phone] {
+  font-family: "FuturaBookC", sans-serif;
+  color: #ffffff;
+  border-bottom: 1px solid #595959;
+  cursor: default;
+}
+
+@media (min-width: 1024px) {
+  .location--form_phone input[type=phone] {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .location--form_phone input[type=phone] {
+    font-size: 14px;
+  }
+}
+
+.location--form_additional {
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-area: 3 / 1 / 5 / 2;
+}
+
+.location--form_additional label[for=additional] {
+  font-family: "FuturaBookC", sans-serif;
+  color: #595959;
+}
+
+@media (min-width: 1024px) {
+  .location--form_additional label[for=additional] {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .location--form_additional label[for=additional] {
+    font-size: 12px;
+  }
+}
+
+.location--form_additional input[name=additional] {
+  font-family: "FuturaBookC", sans-serif;
+  color: #ffffff;
+  border-bottom: 1px solid #595959;
+  cursor: default;
+}
+
+@media (min-width: 1024px) {
+  .location--form_additional input[name=additional] {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .location--form_additional input[name=additional] {
+    font-size: 14px;
+  }
+}
+
+.location--form_checkbox {
+  -ms-grid-column-align: center;
+      justify-self: center;
+  -ms-grid-row: 4;
+  -ms-grid-row-span: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: 4 / 1 / 5 / 3;
+}
+
+.location--form_checkbox > input[type=checkbox] {
+  vertical-align: bottom;
+  height: 18px;
+  width: 18px;
+}
+
+.location--form_checkbox > input[type=checkbox]:checked {
+  background-color: #E3B873;
+  color: #ffffff;
+}
+
+.location--form_checkbox > label {
+  font-family: "FuturaBookC", sans-serif;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.location--form_button {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: center;
+          flex-direction: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 40px;
+  max-width: 250px;
+  background-color: #E3B873;
+  color: #ffffff;
+  padding: 0 20px;
+  font-family: "FuturaDemic", sans-serif;
+  font-size: 13px;
+  text-transform: uppercase;
+  cursor: pointer;
+  justify-self: center;
   min-width: 150px;
 }
 
-.location .location-heading {
+.location--form_button:hover {
+  border: 1px solid #131313;
+  background-color: #ffffff;
+  color: #131313;
+}
+
+@media (min-width: 1024px) {
+  .location--form_button {
+    -ms-grid-row: 5;
+    -ms-grid-row-span: 1;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: 5 / 1 / 6 / 3;
+  }
+}
+
+@media (max-width: 1024px) {
+  .location--form_button {
+    -ms-grid-row: 5;
+    -ms-grid-row-span: 1;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: 5 / 1 / 6 / 3;
+    width: 90%;
+  }
+}
+
+.location--heading {
   max-width: 500px;
   text-align: center;
   font-family: "YesevaOne", sans-serif;
@@ -3448,7 +3921,7 @@ button, input[type="submit"], input[type="text"], input[type="phone"], input[typ
   color: #E3B873;
 }
 
-.location .location-icons {
+.location--icons_container {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3466,13 +3939,13 @@ button, input[type="submit"], input[type="text"], input[type="phone"], input[typ
   width: 100px;
 }
 
-.location .location-icons > img {
+.location--icons_container > img {
   padding: 10px;
   border-radius: 50%;
   background-color: #E3B873;
 }
 
-.location .location-image img {
+.location--image_block img {
   width: 100%;
   height: auto;
 }

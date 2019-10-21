@@ -123,16 +123,16 @@
                     <div class="online--send">
                         <div class="online--send_name">
                             <label for="name">Name</label><br />
-                            <input type="text" id="name" name="name" value="What is your name">
+                            <input type="text" id="name" name="name" value="What is your name" required>
                         </div>
                         <div class="online--send_phone">
                             <label for="phone">Phone</label><br />
-                            <input type="phone" id="phone" name="phone" value="Your phone number">
+                            <input type="phone" id="phone" name="phone" value="Your phone number" required>
                         </div>                    
                         <button class="online--send-button">Submit</button>
                     </div>
                     <div class="online--agreement">
-                        <input type="checkbox" id="agree" name="agree" checked />
+                        <input type="checkbox" id="agree" name="agree" checked required />
                         <label for="agree">I agree to the processing of personal data</label>
                     </div>
                 </form>
@@ -197,7 +197,7 @@
             </div>
         </section>
 
-        <!-- !!undone BEM =( Section with contact form -->
+        <!-- DONE! Section with contact form -->
         <section class="contact">
             <div class="contact--notes">
                 <div class="contact--notes-item_1">
@@ -207,19 +207,19 @@
                         contact, or appoint a date convenient for you
                     </p>
                 </div>
-                <div class="contact--notes-item_1">
+                <div class="contact--notes-item_2">
                     <span class="note-order">02</span>
                     <p>
                         Free metering
                     </p>
                 </div>
-                <div class="contact--notes-item_1">
+                <div class="contact--notes-item_3">
                     <span class="note-order">03</span>
                     <p>
                         Free consultation
                     </p>
                 </div>
-                <div class="contact--notes-item_1">
+                <div class="contact--notes-item_4">
                     <span class="note-order">04</span>
                     <p>
                         Leave a request for free
@@ -235,18 +235,18 @@
                     </h4>
                     <div class="contact--form_name">
                         <label for="name">Name</label><br />
-                        <input type="text" id="name" name="name" value="What is your name">
+                        <input type="text" id="name" name="name" value="What is your name" required>
                     </div>
                     <div class="contact--form_phone">
                         <label for="phone">Phone</label><br />
-                        <input type="phone" id="phone" name="phone" value="Your phone number">
+                        <input type="phone" id="phone" name="phone" value="Your phone number" required>
                     </div>                    
                     <div class="contact--form_additional">
                         <label for="additional">Email</label><br />
-                        <input type="email" id="additional" name="additional" value="Email">
+                        <input type="email" id="additional" name="additional" value="Email" required>
                     </div>  
                     <div class="contact--form_checkbox">
-                        <input type="checkbox" id="agree" name="agree" checked />
+                        <input type="checkbox" id="agree" name="agree" checked required />
                         <label for="agree">I agree to the processing of personal data</label>
                     </div>
                     <button class="contact--form_button">Call the measurer</button>
@@ -544,37 +544,37 @@
             </div>
         </section>
 
-        <!-- !!undone BEM =( Section with organization location and contact information-->
+        <!-- DONE! Section with organization location and contact information-->
         <section class="location">
-            <form class="location-form">
-                <h4 class="form-heading">have any questions?</h4>
-                <div class="form-name">
+            <form class="location--form">
+                <h4 class="location--form_heading">have any questions?</h4>
+                <div class="location--form_name">
                     <label for="name">Name</label><br />
-                    <input type="text" id="name" name="name" value="What is your name">
+                    <input type="text" id="name" name="name" value="What is your name" required>
                 </div>
-                <div class="form-phone">
+                <div class="location--form_phone">
                     <label for="phone">Phone</label><br />
-                    <input type="phone" id="phone" name="phone" value="Your phone number">
+                    <input type="phone" id="phone" name="phone" value="Your phone number" required>
                 </div>                    
-                <div class="form-additional">
+                <div class="location--form_additional">
                     <label for="additional">Question</label><br />
-                    <input type="text" id="additional" name="additional" value="I want to know">
+                    <input type="text" id="additional" name="additional" value="I want to know" required>
                 </div>  
-                <div class="form-checkbox">
-                    <input type="checkbox" id="agree" name="agree" checked />
+                <div class="location--form_checkbox">
+                    <input type="checkbox" id="agree" name="agree" checked required />
                     <label for="agree">I agree to the processing of personal data</label>
                 </div>
-                <button class="button">Submit</button>
+                <button class="location--form_button">Submit</button>
             </form>
-            <h2 class="location-heading">
+            <h2 class="location--heading">
                 Rostov-on-Don, Nansen St., 239 Shopping Center
                 Decorum Tel +7 (928) 768 32 29
             </h2>
-            <figure class="location-icons">
+            <figure class="location--icons_container">
                 <img src="./assets/icons/location-email.svg" alt="email-icon">
                 <img src="./assets/icons/location-cam.svg" alt="cam-icon">
             </figure>
-            <figure class="location-image">
+            <figure class="location--image_block">
                 <img src="./assets/images/map.png" alt="map-location">
             </figure>
         </section>
